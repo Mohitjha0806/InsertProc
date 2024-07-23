@@ -9,7 +9,7 @@
     <link href="bootstrap.min.css" rel="stylesheet" />
     <script src="bootstrap.bundle.min.js"></script>
 </head>
-<body>
+<body>  
     <form id="form1" runat="server" autocomplete="off">
         <div class="container-fluid bg-success-subtle">
             <div class="container bg-light-subtle py-5">
@@ -33,7 +33,7 @@
                         <asp:RegularExpressionValidator ErrorMessage="Enter Valid Name" ValidationExpression="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" ControlToValidate="txt_LastName" runat="server" Display="Dynamic" ForeColor="Red" />
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mt-2">
                     <div class="col-md-6">
                         <asp:Label Text="Email" CssClass="form-label fw-semibold" ID="lbl_Email" runat="server" />
                         <asp:TextBox runat="server" CssClass="form-control border-3 fw-semibold border-dark-subtle bg-info-subtle"
@@ -51,7 +51,7 @@
                             ValidationExpression="^[6-9]{1}[0-9]{9}$" ControlToValidate="txt_Mobile" runat="server" Display="Dynamic" ForeColor="Red" />
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mt-2">
                     <div class="col-md-6">
                         <asp:Label Text="User Name" CssClass="form-label fw-semibold" ID="lbl_UserNmae" runat="server" />
                         <asp:TextBox runat="server" CssClass="form-control border-3 fw-semibold border-dark-subtle bg-info-subtle"
@@ -69,7 +69,7 @@
                             ValidationExpression="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$" ControlToValidate="txt_Pass" runat="server" Display="Dynamic" ForeColor="Red" />
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mt-2">
                     <div class="col-md-4">
                         <asp:Label Text="Date of Birth" CssClass="form-label fw-semibold" ID="lbl_DOB" runat="server" />
                         <asp:TextBox runat="server" TextMode="Date" CssClass="form-control fw-semibold border-3 bg-info-subtle border-dark-subtle"
@@ -89,7 +89,7 @@
                             ValidationExpression="^(1[89]|[2-5][0-9]|60)$" ControlToValidate="txt_Age" runat="server" Display="Dynamic" ForeColor="Red" />
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mt-2">
                     <div class="col-md-6">
                         <asp:Label Text="Gender" CssClass="form-label fw-semibold" ID="lbl_Gender" runat="server" />
                         <asp:RadioButtonList ID="rbl_Gender" CssClass="form-control border-3 fw-semibold border-dark-subtle bg-info-subtle" runat="server">
@@ -108,7 +108,39 @@
                         </asp:CheckBoxList>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mt-2 ">
+                    <div class="col-md-4">
+                        <asp:Label Text="Country" CssClass="form-label fw-semibold" runat="server" />
+                        <asp:DropDownList ID="ddl_Country" CssClass="form-control bg-info-subtle fw-semibold border-3 border-dark-subtle" 
+                            runat="server" OnSelectedIndexChanged="ddl_Country_SelectedIndexChanged" AutoPostBack="true">
+                            <asp:ListItem Text="Select" Value="0" />
+                            <asp:ListItem Text="India" Value="1" />
+                        </asp:DropDownList>
+                        <asp:RequiredFieldValidator ErrorMessage="Required" ControlToValidate="ddl_Country" runat="server" Display="Dynamic" ForeColor="Red" />
+                    </div>
+                    <div class="col-md-4">
+                        <asp:Label Text="State" CssClass="form-label fw-semibold" runat="server" />
+                        <asp:DropDownList ID="ddl_State" CssClass="form-control bg-info-subtle fw-semibold border-3 border-dark-subtle" runat="server" 
+                            OnTextChanged="ddl_State_TextChanged" AutoPostBack="true">
+                           <%-- <asp:ListItem Text="Madhya Pradesh" />
+                            <asp:ListItem Text="Utter Pradesh" />
+                            <asp:ListItem Text="Andra Pradesh" />
+                            <asp:ListItem Text="Himachal Pradesh" />
+                            <asp:ListItem Text="Rajsthan" />--%>
+                        </asp:DropDownList>
+                    </div>
+                    <div class="col-md-4">
+                        <asp:Label Text="City" CssClass="form-label fw-semibold" runat="server" />
+                        <asp:DropDownList ID="ddl_City" CssClass="form-control bg-info-subtle fw-semibold border-3 border-dark-subtle" runat="server">
+                           <%-- <asp:ListItem Text="Bhopal" />
+                            <asp:ListItem Text="Lakhnow" />
+                            <asp:ListItem Text="Hydrabad" />
+                            <asp:ListItem Text="Shimla" />
+                            <asp:ListItem Text="Jaipur" />--%>
+                        </asp:DropDownList>
+                    </div>
+                </div>
+                <div class="row mt-2">
                     <div class="col-md-6">
                         <asp:Label Text="Address" CssClass="form-label fw-semibold" ID="lbl_address" runat="server" />
                         <asp:TextBox runat="server" ID="txt_Address" TextMode="Multiline" form="Feedback_Form" lines="10" cols="10" Wrap="true"
@@ -121,38 +153,6 @@
                         <asp:Label Text="Chose File" CssClass="form-label fw-semibold" ID="lbl_ChoseFile" runat="server" />
                         <asp:FileUpload runat="server" AllowMultiple="true" ID="txt_ChoseFile" CssClass="form-control border-3 fw-semibold border-dark-subtle bg-info-subtle" />
                         <asp:RequiredFieldValidator ErrorMessage="Required" ControlToValidate="txt_ChoseFile" runat="server" Display="Dynamic" ForeColor="Red" />
-                    </div>
-                </div>
-                <div class="row mt-2 ">
-                    <div class="col-md-4">
-                        <asp:Label Text="Country" CssClass="form-label fw-semibold" runat="server" />
-                        <asp:DropDownList ID="ddl_Country" CssClass="form-control bg-info-subtle fw-semibold border-3 border-dark-subtle" runat="server">
-                            <asp:ListItem Text="Select" />
-                            <asp:ListItem Text="India" />
-                        </asp:DropDownList>
-                        <asp:RequiredFieldValidator ErrorMessage="Required" ControlToValidate="ddl_Country" runat="server" Display="Dynamic" ForeColor="Red" />
-                    </div>
-                    <div class="col-md-4">
-                        <asp:Label Text="State" CssClass="form-label fw-semibold" runat="server" />
-                        <asp:DropDownList CssClass="form-control bg-info-subtle fw-semibold border-3 border-dark-subtle" runat="server">
-                            <asp:ListItem Text="Select" />
-                            <asp:ListItem Text="Madhya Pradesh" />
-                            <asp:ListItem Text="Utter Pradesh" />
-                            <asp:ListItem Text="Andra Pradesh" />
-                            <asp:ListItem Text="Himachal Pradesh" />
-                            <asp:ListItem Text="Rajsthan" />
-                        </asp:DropDownList>
-                    </div>
-                    <div class="col-md-4">
-                        <asp:Label Text="City" CssClass="form-label fw-semibold" runat="server" />
-                        <asp:DropDownList CssClass="form-control bg-info-subtle fw-semibold border-3 border-dark-subtle" runat="server">
-                            <asp:ListItem Text="Select" />
-                            <asp:ListItem Text="Bhopal" />
-                            <asp:ListItem Text="Lakhnow" />
-                            <asp:ListItem Text="Hydrabad" />
-                            <asp:ListItem Text="Shimla" />
-                            <asp:ListItem Text="Jaipur" />
-                        </asp:DropDownList>
                     </div>
                 </div>
                 <div class="row mt-3 py-4">
